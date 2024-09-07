@@ -12,8 +12,8 @@ BUSYBOX_VERSION=1_33_1
 FINDER_APP_DIR=$(realpath $(dirname $0))
 ARCH=arm64
 CROSS_COMPILE=aarch64-none-linux-gnu-
-CURR_DIR=/home/srao/assignments-3-and-later-loneamarok/finder-app
-SYSROOT="/home/srao/Documents/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc"
+# CURR_DIR=./finder-app
+SYSROOT=$(${CROSS_COMPILE}gcc --print-sysroot)
 
 if [ $# -lt 1 ]
 then
@@ -99,18 +99,18 @@ sudo mknod -m 666 ${OUTDIR}/rootfs/dev/tty c 5 0
 
 # TODO: Clean and build the writer utility
 echo "Compiling writer utility"
-cd ${CURR_DIR}
+cd ${FINDER_APP_DIR}
 rm -rf writer
 ${CROSS_COMPILE}gcc writer.c -o writer
 
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
 echo "Copy finder related scripts"
-cp $CURR_DIR/writer ${OUTDIR}/rootfs/home
-cp $CURR_DIR/finder.sh ${OUTDIR}/rootfs/home
-cp $CURR_DIR/finder-test.sh ${OUTDIR}/rootfs/home
-cp $CURR_DIR/username.txt ${OUTDIR}/rootfs/home
-cp $CURR_DIR/assignment.txt ${OUTDIR}/rootfs/home
+cp $FINDER_APP_DIR/writer ${OUTDIR}/rootfs/home
+cp $FINDER_APP_DIR/finder.sh ${OUTDIR}/rootfs/home
+cp $FINDER_APP_DIR/finder-test.sh ${OUTDIR}/rootfs/home
+cp $FINDER_APP_DIR/username.txt ${OUTDIR}/rootfs/home
+cp $FINDER_APP_DIR/assignment.txt ${OUTDIR}/rootfs/home
 
 # TODO: Chown the root directory
 echo "Chown the rootfs directory"
