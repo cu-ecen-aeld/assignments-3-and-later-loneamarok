@@ -111,6 +111,7 @@ cp $FINDER_APP_DIR/finder.sh ${OUTDIR}/rootfs/home
 cp $FINDER_APP_DIR/finder-test.sh ${OUTDIR}/rootfs/home
 cp $FINDER_APP_DIR/username.txt ${OUTDIR}/rootfs/home
 cp $FINDER_APP_DIR/assignment.txt ${OUTDIR}/rootfs/home
+cp $FINDER_APP_DIR/autorun-qemu.sh ${OUTDIR}/rootfs/home
 
 # TODO: Chown the root directory
 echo "Chown the rootfs directory"
